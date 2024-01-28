@@ -211,18 +211,18 @@ const server = http.createServer((req, res) => {
                     let Ket_qua = { "Noi_dung": true };
                     // upload img in images Server ------------------------------
                     
-                    let kq = saveMedia(img.name, img.src)
-                    if (kq == "OK") {
-                        res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
-                        res.end(JSON.stringify(Ket_qua));
-                    }else{
-                        Ket_qua.Noi_dung=false
-                        res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
-                        res.end(JSON.stringify(Ket_qua));
-                    }
+                    // let kq = saveMedia(img.name, img.src)
+                    // if (kq == "OK") {
+                    //     res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    //     res.end(JSON.stringify(Ket_qua));
+                    // }else{
+                    //     Ket_qua.Noi_dung=false
+                    //     res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    //     res.end(JSON.stringify(Ket_qua));
+                    // }
 
                     // upload img host cloudinary ------------------------------
-                    /*
+                    
                     imgCloud.UPLOAD_CLOUDINARY(img.name,img.src).then(result=>{
                         console.log(result);
                         res.end(JSON.stringify(Ket_qua));
@@ -231,7 +231,7 @@ const server = http.createServer((req, res) => {
                         Ket_qua.Noi_dung=false
                         res.end(JSON.stringify(Ket_qua))
                     })
-                    */
+                    
                 })
 
             } else {
