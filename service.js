@@ -234,6 +234,50 @@ const server = http.createServer((req, res) => {
                     
                 })
 
+            }else if (url == "/ThemFood") {
+                req.on('end', function () {
+                    let tivi = JSON.parse(noi_dung_nhan);
+                    let ket_qua = { "Noi_dung": true };
+                    db.insertOne("tivi", tivi).then(result => {
+                        console.log(result);
+                        res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                        res.end(JSON.stringify(ket_qua));
+                    }).catch(err => {
+                        console.log(err);
+                        ket_qua.Noi_dung = false;
+                        res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                        res.end(JSON.stringify(ket_qua));
+                    })
+                })
+            }else if (url == "/ImagesFood") {
+                req.on('end', function () {
+                    let img = JSON.parse(noi_dung_nhan);
+                    let Ket_qua = { "Noi_dung": true };
+                    // upload img in images Server ------------------------------
+                    
+                    // let kq = saveMedia(img.name, img.src)
+                    // if (kq == "OK") {
+                    //     res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    //     res.end(JSON.stringify(Ket_qua));
+                    // }else{
+                    //     Ket_qua.Noi_dung=false
+                    //     res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    //     res.end(JSON.stringify(Ket_qua));
+                    // }
+
+                    // upload img host cloudinary ------------------------------
+                    
+                    imgCloud.UPLOAD_CLOUDINARY(img.name,img.src).then(result=>{
+                        console.log(result);
+                        res.end(JSON.stringify(Ket_qua));
+
+                    }).catch(err=>{
+                        Ket_qua.Noi_dung=false
+                        res.end(JSON.stringify(Ket_qua))
+                    })
+                    
+                })
+
             } else {
                 res.end(kq);
             }
