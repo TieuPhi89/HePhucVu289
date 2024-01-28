@@ -10,6 +10,8 @@ const fs = require("fs");
 const db = require("./libs/mongoDB");
 // Thư viện Send Mail (Google Mail)
 const sendMail = require("./libs/sendMail");
+// Thư viện Upload Img to CloudInary
+const imgCloud = require("./libs/cloudinaryImages");
 
 
 const server = http.createServer((req, res) => {
